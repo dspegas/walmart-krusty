@@ -56,5 +56,12 @@ public class PedidoRepository {
 		}
 		return retorno;
 	}
+	
+	// busca pedidos por status
+	public List<Pedido> findByStatus(String status)
+	{
+		// a ser implementado
+		return null;
+	}
 
 }
