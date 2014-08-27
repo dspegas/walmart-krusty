@@ -1,0 +1,20 @@
+CREATE TABLE `pedido` (
+  `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_pedido`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `pedido_produto` (
+  `id_produto` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL,
+  PRIMARY KEY (`id_produto`,`id_pedido`),
+  KEY `id_pedido_idx` (`id_pedido`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `produto` (
+  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(200) DEFAULT NULL,
+  `tipo` int(11) DEFAULT NULL,
+  `preco` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
