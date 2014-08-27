@@ -8,12 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.resteasy.client.ClientRequest;
+import org.jboss.resteasy.client.ClientResponse;
+import org.jboss.resteasy.util.GenericType;
+
+import br.com.walmart.model.Pedido;
+import br.com.walmart.model.StatusPedido;
+
+
+
 /**
- * Servlet implementation to pass JSON to JSP
+ * Servlet implementation 
  */
 
 public class KrustyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	static final String ROOT_URL_CONSULTA_STATUS = "http://localhost:8080/KrustyWS/rest/pedido/consultaStatus/";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -22,23 +33,27 @@ public class KrustyServlet extends HttpServlet {
 		super();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		String json = "{ \"demo\":[[\"John\",\"Sam\",\"Sola\",\"Accun\"],[\"Raj\",\"Raj\",\"Sanjosh\",\"CA\"]]}";
-		out.println(json);
+		
+		ClientRequest requestWS = new ClientRequest(ROOT_URL_CONSULTA_STATUS);
+		requestWS.body("application/json", StatusPedido.Pedido);
+		ClientResponse<Pedido> responseWS = null;
+		try {
+			responseWS = requestWS.get(new GenericType<Pedido>() {});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.println(responseWS);
 	}
 }
