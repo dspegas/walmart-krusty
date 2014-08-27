@@ -26,4 +26,9 @@ public interface PedidoWS {
 	@Path("/atualiza/{param}")
 	@Produces("application/json")
 	public abstract Response atualizaPedido(Pedido pedido);
+	
+	@GET
+	@Path("/consultaStatus/{param}")
+	@Produces("application/json")
+	public abstract Response consultaPedidoStatus(String status) ;
 }

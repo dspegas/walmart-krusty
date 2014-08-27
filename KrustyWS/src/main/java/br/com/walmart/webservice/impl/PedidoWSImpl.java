@@ -28,6 +28,10 @@ public class PedidoWSImpl implements PedidoWS{
 	public Response atualizaPedido(Pedido pedido) {
 		return Response.status(200).entity(pedidoService.atualizarPedido(pedido)).build();
 	} 
+	
+	public Response consultaPedidoStatus(String status) {
+		return Response.status(200).entity(pedidoService.findByStatus(status)).build();
+	}
 
 
 }
