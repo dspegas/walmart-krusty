@@ -31,5 +31,9 @@ public class PedidoServiceImpl implements PedidoService {
 	public List<Pedido> consultarPedido(Long id_pedido) {
 		return pedidoRepository.findPedidoById(id_pedido);
 	}
+	
+	public List<Pedido> findByStatus(String status){
+		return pedidoRepository.findByStatus(status);
+	}
 
 }

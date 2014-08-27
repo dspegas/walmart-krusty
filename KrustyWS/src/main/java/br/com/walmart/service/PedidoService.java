@@ -14,4 +14,6 @@ public interface PedidoService {
 	
 	public List<Pedido> consultarPedido(Long numeroMesa);
 	
+	public List<Pedido> findByStatus(String status);
+	
 }

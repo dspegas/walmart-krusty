@@ -58,10 +58,13 @@ public class PedidoRepository {
 	}
 	
 	// busca pedidos por status
-	public List<Pedido> findByStatus(String status)
-	{
-		// a ser implementado
-		return null;
-	}
+	public List<Pedido> findByStatus(String status) {
 
+		String query = "SELECT m FROM Pedido m WHERE status = :status";
+		List<Pedido> result = em.createQuery(query, Pedido.class)
+				.setParameter("status", status).getResultList();
+
+		return result;
+	}
+	
 }
